@@ -8,7 +8,8 @@ abstract class FirebaseAuthGamesServicesPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static FirebaseAuthGamesServicesPlatform _instance = MethodChannelFirebaseAuthGamesServices();
+  static FirebaseAuthGamesServicesPlatform _instance =
+      MethodChannelFirebaseAuthGamesServices();
 
   /// The default instance of [FirebaseAuthGamesServicesPlatform] to use.
   ///
@@ -24,6 +25,10 @@ abstract class FirebaseAuthGamesServicesPlatform extends PlatformInterface {
   }
 
   Future<String?> getPlatformVersion() {
+    throw UnimplementedError('platformVersion() has not been implemented.');
+  }
+
+  Future<String?> login() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 }

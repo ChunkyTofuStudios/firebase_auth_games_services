@@ -26,7 +26,7 @@ if (flutterVersionName == null) {
 android {
     namespace = "com.chunkytofustudios.firebase_auth_games_services_example"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "25.1.8937393"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

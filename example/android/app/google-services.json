@@ -1,0 +1,38 @@
+{
+  "project_info": {
+    "project_number": "388237965575",
+    "project_id": "fir-auth-games-services",
+    "storage_bucket": "fir-auth-games-services.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388237965575:android:143faf7051f19fa713eda2",
+        "android_client_info": {
+          "package_name": "com.chunkytofustudios.firebase_auth_games_services_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "388237965575-a0p88c016jd5apqjaeltld0qpk6aosg1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chunkytofustudios.firebase_auth_games_services_example",
+            "certificate_hash": "520d42e8ff17ddb08dfcca3b9e678d1e5b75fdbb"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBeVaWZwrzAXB_4etfDQyeG29xDbRT5Ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

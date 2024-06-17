@@ -1,10 +1,18 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:firebase_auth_games_services/firebase_auth_games_services.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+
+import 'package:firebase_auth_games_services/firebase_auth_games_services.dart';
+import 'package:firebase_auth_games_services_example/firebase_options.dart';
+
+void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -32,7 +40,8 @@ class _MyAppState extends State<MyApp> {
     // We also handle the message potentially returning null.
     try {
       platformVersion =
-          await _firebaseAuthGamesServicesPlugin.getPlatformVersion() ?? 'Unknown platform version';
+          await _firebaseAuthGamesServicesPlugin.getPlatformVersion() ??
+              'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -55,7 +64,17 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Column(
+            children: [
+              Text('Running on: $_platformVersion\n'),
+              ElevatedButton(
+                onPressed: () async {
+                  await _firebaseAuthGamesServicesPlugin.login();
+                },
+                child: const Text('Login'),
+              ),
+            ],
+          ),
         ),
       ),
     );

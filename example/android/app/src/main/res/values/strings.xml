@@ -1,0 +1,4 @@
+<!-- res/values/strings.xml -->
+<resources>
+    <string translatable="false" name="game_services_project_id">388237965575</string>
+</resources>
