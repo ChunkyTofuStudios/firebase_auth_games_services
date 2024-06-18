@@ -1,4 +1,6 @@
 <!-- res/values/strings.xml -->
 <resources>
     <string translatable="false" name="game_services_project_id">388237965575</string>
+    <string translatable="false" name="firebase_auth_oauth_2_web_client_id">
+        388237965575-od304goc19cfmg8difft3l3smooqh3p7.apps.googleusercontent.com</string>
 </resources>

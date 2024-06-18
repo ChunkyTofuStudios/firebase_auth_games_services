@@ -35,7 +35,7 @@ android {
 
     defaultConfig {
         applicationId = "com.chunkytofustudios.firebase_auth_games_services_example"
-        minSdk = flutter.minSdkVersion
+        minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName

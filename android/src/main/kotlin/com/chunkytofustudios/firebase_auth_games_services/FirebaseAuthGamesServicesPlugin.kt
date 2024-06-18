@@ -7,34 +7,34 @@ import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
 
 /** FirebaseAuthGamesServicesPlugin */
-class FirebaseAuthGamesServicesPlugin: FlutterPlugin, ActivityAware {
-  private var flutterPluginBinding: FlutterPluginBinding? = null
-  private var methodCallHandler: MethodCallHandlerImpl? = null
+class FirebaseAuthGamesServicesPlugin : FlutterPlugin, ActivityAware {
+    private var flutterPluginBinding: FlutterPluginBinding? = null
+    private var methodCallHandler: MethodCallHandlerImpl? = null
 
 
-  override fun onAttachedToEngine(flutterPluginBinding: FlutterPluginBinding) {
-    this.flutterPluginBinding = flutterPluginBinding
-  }
+    override fun onAttachedToEngine(flutterPluginBinding: FlutterPluginBinding) {
+        this.flutterPluginBinding = flutterPluginBinding
+    }
 
-  override fun onDetachedFromEngine(binding: FlutterPluginBinding) {
-    this.flutterPluginBinding = null
-  }
+    override fun onDetachedFromEngine(binding: FlutterPluginBinding) {
+        this.flutterPluginBinding = null
+    }
 
-  override fun onAttachedToActivity(binding: ActivityPluginBinding) {
-    val pluginBinding = flutterPluginBinding ?: return
-    methodCallHandler = MethodCallHandlerImpl(binding.activity, pluginBinding.binaryMessenger)
-  }
+    override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+        val pluginBinding = flutterPluginBinding ?: return
+        methodCallHandler = MethodCallHandlerImpl(binding.activity, pluginBinding.binaryMessenger)
+    }
 
-  override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-    onAttachedToActivity(binding);
-  }
+    override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
+        onAttachedToActivity(binding);
+    }
 
-  override fun onDetachedFromActivity() {
-    methodCallHandler?.stopListening()
-    methodCallHandler = null
-  }
+    override fun onDetachedFromActivity() {
+        methodCallHandler?.stopListening()
+        methodCallHandler = null
+    }
 
-  override fun onDetachedFromActivityForConfigChanges() {
-    onDetachedFromActivity();
-  }
+    override fun onDetachedFromActivityForConfigChanges() {
+        onDetachedFromActivity();
+    }
 }

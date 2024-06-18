@@ -34,6 +34,11 @@
         <!-- Required by Play Games SDK to specify application ID. -->
         <meta-data android:name="com.google.android.gms.games.APP_ID"
             android:value="@string/game_services_project_id" />
+
+        <!-- Required by firebase_auth_games_services plugin. -->
+        <meta-data
+            android:name="com.chunkytofustudios.firebase_auth_games_services.OAUTH_2_WEB_CLIENT_ID"
+            android:value="@string/firebase_auth_oauth_2_web_client_id" />
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and

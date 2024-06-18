@@ -1,11 +1,5 @@
-import 'firebase_auth_games_services_platform_interface.dart';
+library firebase_auth_games_services;
 
-class FirebaseAuthGamesServices {
-  Future<String?> getPlatformVersion() {
-    return FirebaseAuthGamesServicesPlatform.instance.getPlatformVersion();
-  }
-
-  Future<String?> login() {
-    return FirebaseAuthGamesServicesPlatform.instance.login();
-  }
-}
+export 'src/firebase_auth_extension.dart';
+export 'src/firebase_auth_games_services_exception.dart';
+export 'src/firebase_auth_games_services.dart';

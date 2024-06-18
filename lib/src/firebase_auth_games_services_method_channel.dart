@@ -8,7 +8,7 @@ import 'firebase_auth_games_services_platform_interface.dart';
 /// An implementation of [FirebaseAuthGamesServicesPlatform] that uses method channels.
 class MethodChannelFirebaseAuthGamesServices
     extends FirebaseAuthGamesServicesPlatform {
-  static final Logger _log = Logger('MethodChannelFirebaseAuthGamesServices');
+  static final Logger _log = Logger('FirebaseAuthGamesServices');
 
   /// The method channel used to interact with the native platform.
   @visibleForTesting
@@ -22,9 +22,15 @@ class MethodChannelFirebaseAuthGamesServices
   }
 
   @override
-  Future<String?> login() async {
-    final playerId = await methodChannel.invokeMethod<String>('signInSilently');
-    _log.fine('Player ID is: $playerId');
-    return 'done';
+  Future<String?> getAuthCode() async {
+    final String? authCode;
+    try {
+      authCode = await methodChannel.invokeMethod<String>('getAuthCode');
+    } on PlatformException catch (e) {
+      _log.severe('Failed to get auth code: ${e.message}');
+      return null;
+    }
+    _log.fine('AuthCode is: $authCode');
+    return authCode;
   }
 }
