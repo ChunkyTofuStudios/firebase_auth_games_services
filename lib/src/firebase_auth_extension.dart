@@ -16,10 +16,10 @@ extension FirebaseAuthPlayGames on FirebaseAuth {
   Future<UserCredential> signInWithGamesServices({bool silent = false}) async {
     if (Platform.isAndroid) {
       return signInWithPlayGames(silent: silent);
-    } else if (Platform.isIOS) {
-      return signInWithGameCenter(silent: silent);
-    } else {
-      throw UnimplementedError('Platform not supported.');
     }
+    if (Platform.isIOS) {
+      return signInWithGameCenter(silent: silent);
+    }
+    throw UnimplementedError('Platform not supported.');
   }
 }
