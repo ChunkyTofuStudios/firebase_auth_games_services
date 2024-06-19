@@ -1,4 +1,5 @@
 enum FirebaseAuthGamesServicesExceptionCode {
+  /// Failed to sign in the user to Games Services.
   notSignedIntoGamesServices,
 }
 

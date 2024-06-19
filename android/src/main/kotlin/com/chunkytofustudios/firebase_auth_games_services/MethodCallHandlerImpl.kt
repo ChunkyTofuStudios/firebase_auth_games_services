@@ -106,22 +106,36 @@ class MethodCallHandlerImpl(
 
     private fun signIn(call: MethodCall, result: MethodChannel.Result) {
         val gamesSignInClient = PlayGames.getGamesSignInClient(activity)
-        gamesSignInClient.signIn()
-            .addOnCompleteListener SignIn@{ signInTask: Task<AuthenticationResult> ->
-                val isAuthenticated =
-                    (signInTask.isSuccessful &&
-                            signInTask.result.isAuthenticated)
-                Log.i(
-                    PluginConstants.PLUGIN_NAME,
-                    "[${call.method}] Is authenticated=$isAuthenticated"
-                )
 
-                if (!isAuthenticated) {
-                    result.success(null)
-                    return@SignIn
+        // Check if the user is already signed in.
+        gamesSignInClient.isAuthenticated()
+            .addOnCompleteListener AuthCheck@{ isAuthenticatedTask: Task<AuthenticationResult> ->
+                val isAuthenticated =
+                    (isAuthenticatedTask.isSuccessful &&
+                            isAuthenticatedTask.result.isAuthenticated)
+
+                if (isAuthenticated) {
+                    getAuthCode(call, result)
+                    return@AuthCheck
                 }
 
-                getAuthCode(call, result)
+                gamesSignInClient.signIn()
+                    .addOnCompleteListener SignIn@{ signInTask: Task<AuthenticationResult> ->
+                        val isSignedIn =
+                            (signInTask.isSuccessful &&
+                                    signInTask.result.isAuthenticated)
+                        Log.i(
+                            PluginConstants.PLUGIN_NAME,
+                            "[${call.method}] Is signed in=$isSignedIn"
+                        )
+
+                        if (!isSignedIn) {
+                            result.success(null)
+                            return@SignIn
+                        }
+
+                        getAuthCode(call, result)
+                    }
             }
     }
 

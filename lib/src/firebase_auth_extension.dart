@@ -2,42 +2,22 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:firebase_auth_games_services/firebase_auth_games_services.dart';
-import 'package:firebase_auth_games_services/src/firebase_auth_games_services_exception.dart';
+import 'package:firebase_auth_games_services/src/credentials.dart';
 
 extension FirebaseAuthPlayGames on FirebaseAuth {
-  Future<UserCredential> signInWithPlayGames() async {
-    final String? authCode = await FirebaseAuthGamesServices().getAuthCode();
-    if (authCode == null) {
-      throw FirebaseAuthGamesServicesException(
-        code: FirebaseAuthGamesServicesExceptionCode.notSignedIntoGamesServices,
-        message: 'Failed to get auth code from Play Games Services.',
-      );
-    }
-
-    final credential =
-        PlayGamesAuthProvider.credential(serverAuthCode: authCode);
-    return signInWithCredential(credential);
+  Future<UserCredential> signInWithPlayGames({bool silent = false}) async {
+    return signInWithCredential(await getPlayGamesCredential(silent: silent));
   }
 
-  Future<UserCredential> signInWithGameCenter() async {
-    final String? authCode = await FirebaseAuthGamesServices().getAuthCode();
-    if (authCode == null) {
-      throw FirebaseAuthGamesServicesException(
-        code: FirebaseAuthGamesServicesExceptionCode.notSignedIntoGamesServices,
-        message: 'Failed to get auth code from iOS Game Center.',
-      );
-    }
-
-    final credential = GameCenterAuthProvider.credential();
-    return signInWithCredential(credential);
+  Future<UserCredential> signInWithGameCenter({bool silent = false}) async {
+    return signInWithCredential(await getGameCenterCredential(silent: silent));
   }
 
-  Future<UserCredential> signInWithGamesServices() async {
+  Future<UserCredential> signInWithGamesServices({bool silent = false}) async {
     if (Platform.isAndroid) {
-      return signInWithPlayGames();
+      return signInWithPlayGames(silent: silent);
     } else if (Platform.isIOS) {
-      return signInWithGameCenter();
+      return signInWithGameCenter(silent: silent);
     } else {
       throw UnimplementedError('Platform not supported.');
     }
