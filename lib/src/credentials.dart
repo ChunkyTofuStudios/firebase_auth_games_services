@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:games_services/games_services.dart';
 
-import 'package:firebase_auth_games_services/firebase_auth_games_services.dart';
+import 'package:firebase_auth_games_services/src/firebase_auth_games_services.dart';
+import 'package:firebase_auth_games_services/src/firebase_auth_games_services_exception.dart';
 
 Future<OAuthCredential> getPlayGamesCredential({bool silent = false}) async {
   final String? authCode = silent

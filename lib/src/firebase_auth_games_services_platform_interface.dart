@@ -1,6 +1,6 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import 'firebase_auth_games_services_method_channel.dart';
+import 'package:firebase_auth_games_services/src/firebase_auth_games_services_method_channel.dart';
 
 abstract class FirebaseAuthGamesServicesPlatform extends PlatformInterface {
   /// Constructs a FirebaseAuthGamesServicesPlatform.

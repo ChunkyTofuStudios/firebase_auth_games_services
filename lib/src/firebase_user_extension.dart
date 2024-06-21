@@ -13,6 +13,14 @@ extension FirebaseUserPlayGames on User {
     return linkWithCredential(await getGameCenterCredential(silent: silent));
   }
 
+  /// Link currently signed in user with Play Games on Android or Game Center on
+  /// iOS.
+  ///
+  /// Throws [UnimplementedError] when called outside of Android and iOS.
+  /// Throws [FirebaseAuthGamesServicesException] when authenticating with Games
+  /// Services fails.
+  /// Throws [FirebaseAuthException] when linking with Firebase fails. See
+  /// [signInWithCredential] for possible causes.
   Future<UserCredential> linkWithGamesServices({bool silent = false}) async {
     if (Platform.isAndroid) {
       return linkWithPlayGames(silent: silent);
@@ -23,6 +31,7 @@ extension FirebaseUserPlayGames on User {
     throw UnimplementedError('Platform not supported.');
   }
 
+  /// Check if the user is linked with Games Services.
   bool isLinkedWithGamesServices() {
     if (Platform.isAndroid) {
       return providerData.any((UserInfo info) =>
@@ -35,6 +44,7 @@ extension FirebaseUserPlayGames on User {
     return false;
   }
 
+  /// Fetches the Games Services UID of the user.
   String? getGamesServicesId() {
     try {
       if (Platform.isAndroid) {

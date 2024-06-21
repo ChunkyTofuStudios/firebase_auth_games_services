@@ -13,6 +13,13 @@ extension FirebaseAuthPlayGames on FirebaseAuth {
     return signInWithCredential(await getGameCenterCredential(silent: silent));
   }
 
+  /// Sign in with Play Games on Android or Game Center on iOS.
+  ///
+  /// Throws [UnimplementedError] when called outside of Android and iOS.
+  /// Throws [FirebaseAuthGamesServicesException] when authenticating with Games
+  /// Services fails.
+  /// Throws [FirebaseAuthException] when authenticating with Firebase fails.
+  /// See [signInWithCredential] for possible causes.
   Future<UserCredential> signInWithGamesServices({bool silent = false}) async {
     if (Platform.isAndroid) {
       return signInWithPlayGames(silent: silent);

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:logging/logging.dart';
 
-import 'firebase_auth_games_services_platform_interface.dart';
+import 'package:firebase_auth_games_services/src/firebase_auth_games_services_platform_interface.dart';
 
 /// An implementation of [FirebaseAuthGamesServicesPlatform] that uses method channels.
 class MethodChannelFirebaseAuthGamesServices
