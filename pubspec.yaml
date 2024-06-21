@@ -27,3 +27,5 @@ flutter:
       android:
         package: com.chunkytofustudios.firebase_auth_games_services
         pluginClass: FirebaseAuthGamesServicesPlugin
+      ios:
+        pluginClass: FirebaseAuthGamesServicesPlugin
