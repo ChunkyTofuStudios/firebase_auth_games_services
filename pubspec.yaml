@@ -1,6 +1,6 @@
 name: firebase_auth_games_services
 description: "Enables logging into Firebase using Android Play Games and iOS Game Center."
-version: 1.0.0
+version: 1.0.1
 homepage: https://chunkytofustudios.com
 repository: https://github.com/orkun1675/firebase_auth_games_services
 
