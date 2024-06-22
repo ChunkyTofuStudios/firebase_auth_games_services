@@ -33,4 +33,17 @@ class MethodChannelFirebaseAuthGamesServices
     _log.fine('AuthCode is: $authCode');
     return authCode;
   }
+
+  @override
+  Future<String?> signIn() async {
+    final String? authCode;
+    try {
+      authCode = await methodChannel.invokeMethod<String>('signIn');
+    } on PlatformException catch (e) {
+      _log.severe('Failed to get auth code: ${e.message}');
+      return null;
+    }
+    _log.fine('AuthCode is: $authCode');
+    return authCode;
+  }
 }
