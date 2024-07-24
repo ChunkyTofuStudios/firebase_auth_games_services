@@ -31,7 +31,10 @@ public class FirebaseAuthGamesServicesPlugin: NSObject, FlutterPlugin {
     }
     
     func signIn(result: @escaping FlutterResult) {
+        NSLog("%@: signIn: requesting login", FirebaseAuthGamesServicesPlugin.pluginName)
+        var waitingForGameKit = true
         GKLocalPlayer.local.authenticateHandler = { viewController, error in
+            waitingForGameKit = false
             if let viewController = viewController {
                 NSLog("%@: signIn: showing signIn window.", FirebaseAuthGamesServicesPlugin.pluginName)
                 self.topViewController(with: nil)?.present(viewController, animated: true, completion: nil)
@@ -49,6 +52,13 @@ public class FirebaseAuthGamesServicesPlugin: NSObject, FlutterPlugin {
             }
             NSLog("%@: signIn: success", FirebaseAuthGamesServicesPlugin.pluginName)
             result("")
+        }
+        NSLog("%@: signIn: starting cleanup job", FirebaseAuthGamesServicesPlugin.pluginName)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            if (waitingForGameKit) {
+                NSLog("%@: signIn: no response from GameKit; assuming signIn failed", FirebaseAuthGamesServicesPlugin.pluginName)
+                result(nil)
+            }
         }
     }
     

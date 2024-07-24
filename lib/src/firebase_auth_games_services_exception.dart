@@ -20,4 +20,9 @@ class FirebaseAuthGamesServicesException implements Exception {
 
   FirebaseAuthGamesServicesException(
       {required this.code, required this.message, this.details});
+
+  @override
+  String toString() {
+    return 'FirebaseAuthGamesServicesException($code, msg=$message, details=$details)';
+  }
 }

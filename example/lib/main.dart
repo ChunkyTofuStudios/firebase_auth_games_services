@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth_games_services/firebase_auth_games_services.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'package:firebase_auth_games_services/firebase_auth_games_services.dart';
 import 'package:firebase_auth_games_services_example/firebase_options.dart';
 
 void main() async {
@@ -124,9 +124,11 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: () async {
                   try {
-                    await FirebaseAuth.instance.signInWithGamesServices();
+                    await FirebaseAuth.instance
+                        .signInWithGamesServices()
+                        .timeout(const Duration(seconds: 10));
                   } catch (e) {
-                    debugPrint('Sign in failed: ${e.toString()}');
+                    log('Sign in failed: ${e.toString()}');
                   }
                 },
                 child: const Text('Sign in'),
@@ -134,9 +136,11 @@ class _MyAppState extends State<MyApp> {
               ElevatedButton(
                 onPressed: () async {
                   try {
-                    await FirebaseAuth.instance.signOut();
+                    await FirebaseAuth.instance
+                        .signOut()
+                        .timeout(const Duration(seconds: 10));
                   } catch (e) {
-                    debugPrint('Sign out failed: ${e.toString()}');
+                    log('Sign out failed: ${e.toString()}');
                   }
                 },
                 child: const Text('Sign out'),
