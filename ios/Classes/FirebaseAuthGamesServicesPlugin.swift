@@ -56,6 +56,8 @@ public class FirebaseAuthGamesServicesPlugin: NSObject, FlutterPlugin {
         NSLog("%@: signIn: starting cleanup job", FirebaseAuthGamesServicesPlugin.pluginName)
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             if (waitingForGameKit) {
+                // GameKit might ignore requests if a user has declined sign in before.
+                // https://stackoverflow.com/questions/4576032/ios-development-strange-problem-with-authenticating-game-center-user
                 NSLog("%@: signIn: no response from GameKit; assuming signIn failed", FirebaseAuthGamesServicesPlugin.pluginName)
                 result(nil)
             }
