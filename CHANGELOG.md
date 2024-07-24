@@ -1,3 +1,8 @@
+## 1.1.0
+
+* Remove dependency on https://pub.dev/packages/games_services.
+* Fix an error where login would hang on iOS if user declines to login too many times.
+
 ## 1.0.2
 
 * Implement missing method.
