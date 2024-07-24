@@ -4,6 +4,16 @@ Enables logging into Firebase using Android Play Games and iOS Game Center.
 
 Utilize this plugin for low-friction sign in for Flutter apps. No emails, no passwords, no pop-ups.
 
+## Snyopsis
+
+This plugin enables a very simple login flow:
+
+```dart
+import 'package:firebase_auth_games_services/firebase_auth_games_services.dart';
+
+await FirebaseAuth.instance.signInWithGamesServices();
+```
+
 ## Glossary
 
 * Games Services: Collective name for Play Games and Game Center.
