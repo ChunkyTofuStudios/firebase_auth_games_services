@@ -123,13 +123,21 @@ class _MyAppState extends State<MyApp> {
               const SizedBox(height: 40),
               ElevatedButton(
                 onPressed: () async {
-                  await FirebaseAuth.instance.signInWithGamesServices();
+                  try {
+                    await FirebaseAuth.instance.signInWithGamesServices();
+                  } catch (e) {
+                    debugPrint('Sign in failed: ${e.toString()}');
+                  }
                 },
                 child: const Text('Sign in'),
               ),
               ElevatedButton(
                 onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
+                  try {
+                    await FirebaseAuth.instance.signOut();
+                  } catch (e) {
+                    debugPrint('Sign out failed: ${e.toString()}');
+                  }
                 },
                 child: const Text('Sign out'),
               ),

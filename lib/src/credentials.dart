@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:games_services/games_services.dart';
 
 import 'package:firebase_auth_games_services/src/firebase_auth_games_services.dart';
 import 'package:firebase_auth_games_services/src/firebase_auth_games_services_exception.dart';
@@ -19,30 +18,20 @@ Future<OAuthCredential> getPlayGamesCredential({bool silent = false}) async {
 }
 
 Future<OAuthCredential> getGameCenterCredential({bool silent = false}) async {
-  if (!(await _signIntoGameCenter(silent: silent))) {
+  if (await FirebaseAuthGamesServices().isSignedIn()) {
+    return GameCenterAuthProvider.credential();
+  }
+  if (silent) {
     throw FirebaseAuthGamesServicesException(
       code: FirebaseAuthGamesServicesExceptionCode.notSignedIntoGamesServices,
       message: 'User is not signed into Game Center.',
     );
   }
-  return GameCenterAuthProvider.credential();
-}
-
-Future<bool> _signIntoGameCenter({bool silent = false}) async {
-  try {
-    if (await GamesServices.isSignedIn) {
-      return true;
-    }
-    if (silent) {
-      return false;
-    }
-    await GamesServices.signIn();
-    return await GamesServices.isSignedIn;
-  } catch (e) {
+  if ((await FirebaseAuthGamesServices().signIn()) == null) {
     throw FirebaseAuthGamesServicesException(
       code: FirebaseAuthGamesServicesExceptionCode.notSignedIntoGamesServices,
       message: 'Error when trying to sign into Game Center.',
-      details: e,
     );
   }
+  return GameCenterAuthProvider.credential();
 }

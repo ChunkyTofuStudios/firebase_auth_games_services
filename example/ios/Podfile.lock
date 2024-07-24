@@ -1,40 +1,42 @@
 PODS:
-  - Firebase/Auth (10.27.0):
+  - Firebase/Auth (10.28.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 10.27.0)
-  - Firebase/CoreOnly (10.27.0):
-    - FirebaseCore (= 10.27.0)
-  - firebase_auth (5.1.0):
-    - Firebase/Auth (= 10.27.0)
+    - FirebaseAuth (~> 10.28.0)
+  - Firebase/CoreOnly (10.28.0):
+    - FirebaseCore (= 10.28.0)
+  - firebase_auth (5.1.2):
+    - Firebase/Auth (= 10.28.0)
     - firebase_core
     - Flutter
-  - firebase_core (3.1.0):
-    - Firebase/CoreOnly (= 10.27.0)
+  - firebase_auth_games_services (1.1.0):
     - Flutter
-  - FirebaseAppCheckInterop (10.28.0)
-  - FirebaseAuth (10.27.0):
+  - firebase_core (3.2.0):
+    - Firebase/CoreOnly (= 10.28.0)
+    - Flutter
+  - FirebaseAppCheckInterop (10.29.0)
+  - FirebaseAuth (10.28.0):
     - FirebaseAppCheckInterop (~> 10.17)
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
     - RecaptchaInterop (~> 100.0)
-  - FirebaseCore (10.27.0):
+  - FirebaseCore (10.28.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
     - GoogleUtilities/Logger (~> 7.12)
-  - FirebaseCoreExtension (10.27.0):
+  - FirebaseCoreExtension (10.28.0):
     - FirebaseCore (~> 10.0)
-  - FirebaseCoreInternal (10.28.0):
+  - FirebaseCoreInternal (10.29.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
-  - FirebaseFirestore (10.27.0):
-    - FirebaseFirestoreBinary (= 10.27.0)
+  - FirebaseFirestore (10.28.0):
+    - FirebaseFirestoreBinary (= 10.28.0)
   - FirebaseFirestoreAbseilBinary (1.2024011601.0)
-  - FirebaseFirestoreBinary (10.27.0):
-    - FirebaseCore (= 10.27.0)
-    - FirebaseCoreExtension (= 10.27.0)
-    - FirebaseFirestoreInternalBinary (= 10.27.0)
-    - FirebaseSharedSwift (= 10.27.0)
+  - FirebaseFirestoreBinary (10.28.0):
+    - FirebaseCore (= 10.28.0)
+    - FirebaseCoreExtension (= 10.28.0)
+    - FirebaseFirestoreInternalBinary (= 10.28.0)
+    - FirebaseSharedSwift (= 10.28.0)
   - FirebaseFirestoreGRPCBoringSSLBinary (1.62.1)
   - FirebaseFirestoreGRPCCoreBinary (1.62.1):
     - FirebaseFirestoreAbseilBinary (= 1.2024011601.0)
@@ -42,17 +44,14 @@ PODS:
   - FirebaseFirestoreGRPCCPPBinary (1.62.1):
     - FirebaseFirestoreAbseilBinary (= 1.2024011601.0)
     - FirebaseFirestoreGRPCCoreBinary (= 1.62.1)
-  - FirebaseFirestoreInternalBinary (10.27.0):
-    - FirebaseCore (= 10.27.0)
+  - FirebaseFirestoreInternalBinary (10.28.0):
+    - FirebaseCore (= 10.28.0)
     - FirebaseFirestoreAbseilBinary (= 1.2024011601.0)
     - FirebaseFirestoreGRPCCPPBinary (= 1.62.1)
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30911.0, >= 2.30908.0)
-  - FirebaseSharedSwift (10.27.0)
+  - FirebaseSharedSwift (10.28.0)
   - Flutter (1.0.0)
-  - games_services (0.0.1):
-    - Flutter
-    - FlutterMacOS
   - GoogleUtilities/AppDelegateSwizzler (7.13.3):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -75,7 +74,7 @@ PODS:
   - GoogleUtilities/Reachability (7.13.3):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
-  - GTMSessionFetcher/Core (3.4.1)
+  - GTMSessionFetcher/Core (3.5.0)
   - integration_test (0.0.1):
     - Flutter
   - leveldb-library (1.22.5)
@@ -89,10 +88,10 @@ PODS:
 
 DEPENDENCIES:
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
+  - firebase_auth_games_services (from `.symlinks/plugins/firebase_auth_games_services/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
-  - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `10.27.0`)
+  - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `10.28.0`)
   - Flutter (from `Flutter`)
-  - games_services (from `.symlinks/plugins/games_services/darwin`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
 
 SPEC REPOS:
@@ -120,50 +119,50 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
+  firebase_auth_games_services:
+    :path: ".symlinks/plugins/firebase_auth_games_services/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 10.27.0
+    :tag: 10.28.0
   Flutter:
     :path: Flutter
-  games_services:
-    :path: ".symlinks/plugins/games_services/darwin"
   integration_test:
     :path: ".symlinks/plugins/integration_test/ios"
 
 CHECKOUT OPTIONS:
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 10.27.0
+    :tag: 10.28.0
 
 SPEC CHECKSUMS:
-  Firebase: 26b040b20866a55f55eb3611b9fcf3ae64816b86
-  firebase_auth: fd0c6e0ea74d07460c762e05e04334364e84414b
-  firebase_core: 483cfad66d24d8f3c233f31db4263830c625c909
-  FirebaseAppCheckInterop: 5315f40293191bfec04b2cfab0215760e441540a
-  FirebaseAuth: 77a012b7e08042bf44d0db835ca2e86e6ca7bbd3
-  FirebaseCore: a2b95ae4ce7c83ceecfbbbe3b6f1cddc7415a808
-  FirebaseCoreExtension: 4ec89dd0c6de93d6becde32122d68b7c35f6bf5d
-  FirebaseCoreInternal: 58d07f1362fddeb0feb6a857d1d1d1c5e558e698
-  FirebaseFirestore: 6bc950c7b9f4aec24ad11c583b28201567a80977
+  Firebase: 5121c624121af81cbc81df3bda414b3c28c4f3c3
+  firebase_auth: e778ee89483b86fe4200d1f8e9a1c52aa5fb64a8
+  firebase_auth_games_services: 2c3996f8383f0776b7d9628e3d0dfc162ba6bf16
+  firebase_core: a9d0180d5285527884d07a41eb4a9ec9ed12cdb6
+  FirebaseAppCheckInterop: 6a1757cfd4067d8e00fccd14fcc1b8fd78cfac07
+  FirebaseAuth: 3d872fbbfc4223edeb72769e488f325fa8b0a4a9
+  FirebaseCore: 857dc1c6dd1255675047404d8466f7dfaac5d779
+  FirebaseCoreExtension: f63147b723e2a700fe0f34ec6fb7f358d6fe83e0
+  FirebaseCoreInternal: df84dd300b561c27d5571684f389bf60b0a5c934
+  FirebaseFirestore: 992ccba0fb5e5bd4c53facb241a9e2466f316d4b
   FirebaseFirestoreAbseilBinary: bd0451946879e0e01327c8efc35896bb273009c4
-  FirebaseFirestoreBinary: c9850d2f59c0e0284300366d7b6cf27705bbbc17
+  FirebaseFirestoreBinary: 93543ac3d053002f6fa130ce51a26bf2aa999c41
   FirebaseFirestoreGRPCBoringSSLBinary: c3007e61593e4583ec3bb8b34ce654663663b690
   FirebaseFirestoreGRPCCoreBinary: 1243fc6604a52912694635f891916976924931ed
   FirebaseFirestoreGRPCCPPBinary: e447b3a7c060c0abfc4e2c9f6fb53bf7635ded66
-  FirebaseFirestoreInternalBinary: a6fee1ed2c3d51c750c34a6ad879fc7308484f1a
-  FirebaseSharedSwift: a03fe7a59ee646fef71099a887f774fe25d745b8
+  FirebaseFirestoreInternalBinary: 403a5475a2f8481606864443f2ab3d592b67fe4d
+  FirebaseSharedSwift: 48de4aec81a6b79bb30404e5e6db43ea74848fed
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  games_services: 9d174ae29e8de7aa3f511bc00fedd7006594063f
   GoogleUtilities: ea963c370a38a8069cc5f7ba4ca849a60b6d7d15
-  GTMSessionFetcher: 8000756fc1c19d2e5697b90311f7832d2e33f6cd
+  GTMSessionFetcher: 5aea5ba6bd522a239e236100971f10cb71b96ab6
   integration_test: ce0a3ffa1de96d1a89ca0ac26fca7ea18a749ef4
   leveldb-library: e8eadf9008a61f9e1dde3978c086d2b6d9b9dc28
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
 
-PODFILE CHECKSUM: 692846102f59e5c4c26ac7d03ed726bc6a9d9796
+PODFILE CHECKSUM: 984ebda433d41fd97903a5a4df874b7227eda35e
 
 COCOAPODS: 1.15.2

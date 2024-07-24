@@ -4,14 +4,14 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'firebase_auth_games_services'
-  s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin project.'
+  s.version          = '1.1.0'
+  s.summary          = 'Enables logging into Firebase using iOS Game Center.'
   s.description      = <<-DESC
-A new Flutter plugin project.
+The iOS platform implementation of the Flutter plugin `firebase_auth_games_services`.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://chunkytofustudios.com'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Orkun Duman' => 'chunkytofustudios@gmail.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'

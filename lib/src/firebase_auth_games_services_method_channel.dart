@@ -22,6 +22,18 @@ class MethodChannelFirebaseAuthGamesServices
   }
 
   @override
+  Future<bool> isSignedIn() async {
+    final bool result;
+    try {
+      result = await methodChannel.invokeMethod<bool>('isSignedIn') ?? false;
+    } on PlatformException catch (e) {
+      _log.severe('Failed to check if user is signed in: ${e.message}');
+      return false;
+    }
+    return result;
+  }
+
+  @override
   Future<String?> getAuthCode() async {
     final String? authCode;
     try {

@@ -20,14 +20,19 @@ class FirebaseAuthGamesServices {
     return FirebaseAuthGamesServicesPlatform.instance.getPlatformVersion();
   }
 
+  /// Checks if the user is signed in using Game Center SDK on iOS.
+  /// iOS only.
+  Future<bool> isSignedIn() {
+    return FirebaseAuthGamesServicesPlatform.instance.isSignedIn();
+  }
+
   /// Gets the server auth code from Play Games SDK on Android.
-  /// iOS is not supported.
+  /// Android only.
   Future<String?> getAuthCode() {
     return FirebaseAuthGamesServicesPlatform.instance.getAuthCode();
   }
 
-  /// Requests explicit sign in from the user via a pop-up dialog on Android.
-  /// iOS is not supported.
+  /// Requests explicit sign in from the user via a pop-up dialog on Android and iOS.
   Future<String?> signIn() {
     return FirebaseAuthGamesServicesPlatform.instance.signIn();
   }

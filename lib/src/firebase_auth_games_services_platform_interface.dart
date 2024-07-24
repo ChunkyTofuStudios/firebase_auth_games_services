@@ -28,6 +28,10 @@ abstract class FirebaseAuthGamesServicesPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
+  Future<bool> isSignedIn() {
+    throw UnimplementedError('isSignedIn() has not been implemented.');
+  }
+
   Future<String?> getAuthCode() {
     throw UnimplementedError('getAuthCode() has not been implemented.');
   }
