@@ -143,3 +143,5 @@ Please feel free to file bugs and submit PRs.
 ## About
 
 Developed by [@orkun1675](https://github.com/orkun1675) and used actively in [Chunky Tofu Studios](https://chunkytofustudios.com) projects.
+
+Based on [game_services_firebase_auth](https://pub.dev/packages/game_services_firebase_auth) by [jgrandchavin@](https://github.com/jgrandchavin).
