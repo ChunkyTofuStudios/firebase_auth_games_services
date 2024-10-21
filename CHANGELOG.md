@@ -1,3 +1,7 @@
+## 1.1.1
+
+* Moved GitHub repository under an organization (Chunky Tofu Studios)
+
 ## 1.1.0
 
 * Remove dependency on https://pub.dev/packages/games_services.
