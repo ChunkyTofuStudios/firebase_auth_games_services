@@ -8,7 +8,7 @@ import 'package:firebase_auth_games_services/src/firebase_auth_games_services_pl
 /// An implementation of [FirebaseAuthGamesServicesPlatform] that uses method channels.
 class MethodChannelFirebaseAuthGamesServices
     extends FirebaseAuthGamesServicesPlatform {
-  static final Logger _log = Logger('FirebaseAuthGamesServices');
+  static final _log = Logger('FirebaseAuthGamesServices');
 
   /// The method channel used to interact with the native platform.
   @visibleForTesting

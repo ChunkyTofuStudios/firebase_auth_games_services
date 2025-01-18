@@ -1,3 +1,7 @@
+## 1.1.2
+
+* Fix exceptions when running on web.
+
 ## 1.1.1
 
 * Moved GitHub repository under an organization (Chunky Tofu Studios)

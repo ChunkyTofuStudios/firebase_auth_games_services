@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '388237965575',
     projectId: 'fir-auth-games-services',
     storageBucket: 'fir-auth-games-services.appspot.com',
-    androidClientId: '388237965575-a0p88c016jd5apqjaeltld0qpk6aosg1.apps.googleusercontent.com',
+    androidClientId:
+        '388237965575-a0p88c016jd5apqjaeltld0qpk6aosg1.apps.googleusercontent.com',
     iosBundleId: 'com.chunkytofustudios.firebaseAuthGamesServicesExample',
   );
 }
