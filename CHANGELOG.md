@@ -1,3 +1,8 @@
+## 2.0.0
+
+* BREAKING: Simplified API using getters.
+* New getter FirebaseAuth.isGamesServicesAvailable to check if the current Platform is supported.
+
 ## 1.1.2
 
 * Fix exceptions when running on web.

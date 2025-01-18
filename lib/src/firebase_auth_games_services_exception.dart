@@ -1,6 +1,8 @@
 enum FirebaseAuthGamesServicesExceptionCode {
   /// The platform is not supported.
   /// Note that this plugin only supports Android and iOS.
+  /// You can avoid this error by checking
+  /// [FirebaseAuth.isGamesServicesAvailable] before making any calls.
   gamesServicesNotAvailable,
 
   /// Failed to sign in the user to Games Services.

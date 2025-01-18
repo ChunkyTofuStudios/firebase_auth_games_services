@@ -11,10 +11,22 @@ extension FirebaseAuthPlayGames on FirebaseAuth {
       !kIsWeb && (Platform.isAndroid || Platform.isIOS);
 
   Future<UserCredential> signInWithPlayGames({bool silent = false}) async {
+    if (kIsWeb || !Platform.isAndroid) {
+      throw FirebaseAuthGamesServicesException(
+        code: FirebaseAuthGamesServicesExceptionCode.gamesServicesNotAvailable,
+        message: 'Play Games is only available on Android.',
+      );
+    }
     return signInWithCredential(await getPlayGamesCredential(silent: silent));
   }
 
   Future<UserCredential> signInWithGameCenter({bool silent = false}) async {
+    if (kIsWeb || !Platform.isIOS) {
+      throw FirebaseAuthGamesServicesException(
+        code: FirebaseAuthGamesServicesExceptionCode.gamesServicesNotAvailable,
+        message: 'Game Center is only available on iOS.',
+      );
+    }
     return signInWithCredential(await getGameCenterCredential(silent: silent));
   }
 

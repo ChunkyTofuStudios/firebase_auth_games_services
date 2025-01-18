@@ -7,14 +7,23 @@ import 'package:firebase_auth_games_services/src/credentials.dart';
 import 'package:flutter/foundation.dart';
 
 extension FirebaseUserPlayGames on User {
-  bool get isGamesServicesAvailable =>
-      !kIsWeb && (Platform.isAndroid || Platform.isIOS);
-
   Future<UserCredential> linkWithPlayGames({bool silent = false}) async {
+    if (kIsWeb || !Platform.isAndroid) {
+      throw FirebaseAuthGamesServicesException(
+        code: FirebaseAuthGamesServicesExceptionCode.gamesServicesNotAvailable,
+        message: 'Play Games is only available on Android.',
+      );
+    }
     return linkWithCredential(await getPlayGamesCredential(silent: silent));
   }
 
   Future<UserCredential> linkWithGameCenter({bool silent = false}) async {
+    if (kIsWeb || !Platform.isIOS) {
+      throw FirebaseAuthGamesServicesException(
+        code: FirebaseAuthGamesServicesExceptionCode.gamesServicesNotAvailable,
+        message: 'Game Center is only available on iOS.',
+      );
+    }
     return linkWithCredential(await getGameCenterCredential(silent: silent));
   }
 
@@ -39,38 +48,33 @@ extension FirebaseUserPlayGames on User {
   }
 
   /// Check if the user is linked with Games Services.
-  bool isLinkedWithGamesServices() {
-    if (!isGamesServicesAvailable) return false;
-    if (Platform.isAndroid) {
-      return providerData.any((UserInfo info) =>
-          info.providerId == PlayGamesAuthProvider.PROVIDER_ID);
-    }
-    if (Platform.isIOS) {
-      return providerData.any((UserInfo info) =>
-          info.providerId == GameCenterAuthProvider.PROVIDER_ID);
-    }
-    return false;
-  }
+  bool get isLinkedWithGamesServices => providerData.any((info) =>
+      info.providerId == PlayGamesAuthProvider.PROVIDER_ID ||
+      info.providerId == GameCenterAuthProvider.PROVIDER_ID);
 
   /// Fetches the Games Services UID of the user.
-  String? getGamesServicesId() {
-    if (!isGamesServicesAvailable) return null;
+  String? get gamesServicesId {
     try {
-      if (Platform.isAndroid) {
+      if (!kIsWeb && Platform.isAndroid) {
         return providerData
-            .firstWhere((UserInfo info) =>
-                info.providerId == PlayGamesAuthProvider.PROVIDER_ID)
+            .firstWhere(
+                (info) => info.providerId == PlayGamesAuthProvider.PROVIDER_ID)
             .uid;
       }
-      if (Platform.isIOS) {
+      if (!kIsWeb && Platform.isIOS) {
         return providerData
-            .firstWhere((UserInfo info) =>
-                info.providerId == GameCenterAuthProvider.PROVIDER_ID)
+            .firstWhere(
+                (info) => info.providerId == GameCenterAuthProvider.PROVIDER_ID)
             .uid;
       }
+      // Fallback to either provider if not on Android or iOS.
+      return providerData
+          .firstWhere((info) =>
+              info.providerId == PlayGamesAuthProvider.PROVIDER_ID ||
+              info.providerId == GameCenterAuthProvider.PROVIDER_ID)
+          .uid;
     } on StateError catch (_) {
       return null;
     }
-    return null;
   }
 }
