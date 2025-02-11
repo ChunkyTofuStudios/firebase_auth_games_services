@@ -125,6 +125,18 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () async {
                   try {
                     await FirebaseAuth.instance
+                        .signInWithGamesServices(silent: true)
+                        .timeout(const Duration(seconds: 10));
+                  } catch (e) {
+                    log('Silent sign in failed: ${e.toString()}');
+                  }
+                },
+                child: const Text('Silent sign in'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    await FirebaseAuth.instance
                         .signInWithGamesServices()
                         .timeout(const Duration(seconds: 10));
                   } catch (e) {

@@ -1,3 +1,7 @@
+## 2.1.0
+
+* Fixes a bug where silent login on iOS wasn't working.
+
 ## 2.0.0
 
 * BREAKING: Simplified API using getters.

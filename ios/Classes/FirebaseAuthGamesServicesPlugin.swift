@@ -1,6 +1,6 @@
 import Flutter
-import UIKit
 import GameKit
+import UIKit
 
 public class FirebaseAuthGamesServicesPlugin: NSObject, FlutterPlugin {
     static let pluginName = "FirebaseAuthGamesServicesPlugin"
@@ -18,24 +18,33 @@ public class FirebaseAuthGamesServicesPlugin: NSObject, FlutterPlugin {
         case "isSignedIn":
             isSignedIn(result: result)
         case "signIn":
-            signIn(result: result)
+            signIn(silent: false, result: result)
         default:
             result(FlutterMethodNotImplemented)
         }
     }
     
-    func isSignedIn(result: @escaping FlutterResult) {
+    private func isSignedIn(result: @escaping FlutterResult) {
         let playerSignedIn = GKLocalPlayer.local.isAuthenticated
         NSLog("%@: isSignedIn: result is %@", FirebaseAuthGamesServicesPlugin.pluginName, playerSignedIn ? "true" : "false")
-        result(playerSignedIn);
+        if playerSignedIn {
+            result(true)
+            return
+        }
+        signIn(silent: true, result: result)
     }
     
-    func signIn(result: @escaping FlutterResult) {
+    private func signIn(silent: Bool, result: @escaping FlutterResult) {
         NSLog("%@: signIn: requesting login", FirebaseAuthGamesServicesPlugin.pluginName)
         var waitingForGameKit = true
         GKLocalPlayer.local.authenticateHandler = { viewController, error in
             waitingForGameKit = false
             if let viewController = viewController {
+                if silent {
+                    NSLog("%@: signIn: requires UI, aborting", FirebaseAuthGamesServicesPlugin.pluginName)
+                    result(false)
+                    return
+                }
                 NSLog("%@: signIn: showing signIn window.", FirebaseAuthGamesServicesPlugin.pluginName)
                 self.topViewController(with: nil)?.present(viewController, animated: true, completion: nil)
                 // GameKit will call the authenticateHandler again once the user takes action.
@@ -43,28 +52,29 @@ public class FirebaseAuthGamesServicesPlugin: NSObject, FlutterPlugin {
             }
             if error != nil {
                 NSLog("%@: signIn: failed: %@", FirebaseAuthGamesServicesPlugin.pluginName, error?.localizedDescription ?? "")
-                result(nil)
+                result(silent ? false : nil)
                 return
             }
             if !GKLocalPlayer.local.isAuthenticated {
                 NSLog("%@: signIn: signIn succeded but player is not authenticated; this should not happen per API docs", FirebaseAuthGamesServicesPlugin.pluginName)
-                result(nil)
+                result(silent ? false : nil)
+                return
             }
             NSLog("%@: signIn: success", FirebaseAuthGamesServicesPlugin.pluginName)
-            result("")
+            result(silent ? true : "")
         }
         NSLog("%@: signIn: starting cleanup job", FirebaseAuthGamesServicesPlugin.pluginName)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            if (waitingForGameKit) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
+            if waitingForGameKit {
                 // GameKit might ignore requests if a user has declined sign in before.
                 // https://stackoverflow.com/questions/4576032/ios-development-strange-problem-with-authenticating-game-center-user
                 NSLog("%@: signIn: no response from GameKit; assuming signIn failed", FirebaseAuthGamesServicesPlugin.pluginName)
-                result(nil)
+                result(silent ? false : nil)
             }
         }
     }
     
-    func topViewController(with window: UIWindow?) -> UIViewController? {
+    private func topViewController(with window: UIWindow?) -> UIViewController? {
         var windowToUse = window
         if windowToUse == nil {
             for window in UIApplication.shared.windows {
@@ -76,7 +86,7 @@ public class FirebaseAuthGamesServicesPlugin: NSObject, FlutterPlugin {
         }
         
         var topController = windowToUse?.rootViewController
-        while ((topController?.presentedViewController) != nil) {
+        while (topController?.presentedViewController) != nil {
             topController = topController?.presentedViewController
         }
         return topController
