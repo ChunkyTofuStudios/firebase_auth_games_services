@@ -1,3 +1,7 @@
+## 2.2.0
+
+* Fixes a bug where silent login on iOS would sometimes show the GameKit UI.
+
 ## 2.1.0
 
 * Fixes a bug where silent login on iOS wasn't working.

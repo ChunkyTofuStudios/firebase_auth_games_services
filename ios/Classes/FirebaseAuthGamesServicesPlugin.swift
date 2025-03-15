@@ -27,11 +27,7 @@ public class FirebaseAuthGamesServicesPlugin: NSObject, FlutterPlugin {
     private func isSignedIn(result: @escaping FlutterResult) {
         let playerSignedIn = GKLocalPlayer.local.isAuthenticated
         NSLog("%@: isSignedIn: result is %@", FirebaseAuthGamesServicesPlugin.pluginName, playerSignedIn ? "true" : "false")
-        if playerSignedIn {
-            result(true)
-            return
-        }
-        signIn(silent: true, result: result)
+        result(playerSignedIn)
     }
     
     private func signIn(silent: Bool, result: @escaping FlutterResult) {
