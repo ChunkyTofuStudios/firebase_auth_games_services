@@ -90,6 +90,8 @@ Please follow these steps carefully as there are multiple pitfalls that might le
 
 1. [*](https://firebase.google.com/docs/auth/ios/game-center#before_you_begin) Ensure that the bundle ID in [Firebase console](https://console.firebase.google.com/) matches the one listed in XCode.
 
+1. Login to App Store Connect to (a) ensure Game Center is enabled under "iOS App"; (b) ensure Game Center is enabled under "Growth & Marketing" > "Game Center"; (c) add a leaderboard or achievement.
+
 ### Update Firebase config
 
 If you made any changes via Firebase Console or Google Cloud Console run the following command to update your local files:
