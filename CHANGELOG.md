@@ -1,3 +1,8 @@
+## 3.1.0
+
+* Add Swift Package Manager support on iOS (CocoaPods remains supported)
+* Requires Flutter `3.41.0` or later
+
 ## 3.0.1
 
 * Upgrade dependencies
